@@ -27,7 +27,7 @@ final class UziServiceTest extends TestCase
             UziConstants::UZI_ROLE_PHYS_ASSISTANT,
         ]);
     }
-    
+
     public function testCheckRequestHasNoCert(): void
     {
         $service = new UziService(true);
