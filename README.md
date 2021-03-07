@@ -1,4 +1,4 @@
-# pUZI php
+# pUZI Laravel
 [![Laravel](https://github.com/annejan/pUZI-laravel/actions/workflows/test.yml/badge.svg)](https://github.com/annejan/pUZI-laravel/actions/workflows/test.yml)
 
 Laravel wrapper for proficient UZI pass reader.
@@ -41,11 +41,19 @@ Add the following to your `composer.json` and then run `composer install`.
 
 ## Usage
 
+TODO:
 
+* User model
+* Middleware
+* Move allowed types etc to configuration
+* More and tests
+* Add usage documentation
 
 ## Uses
 
-[PHP Secure Communications Library](https://phpseclib.com/)
+puzi-php - [Proficient UZI pass reader in PHP](https://github.com/annejan/pUZI-php)
+
+phpseclib - [PHP Secure Communications Library](https://phpseclib.com/)
 
 ## Contributing
 

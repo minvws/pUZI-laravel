@@ -40,7 +40,7 @@
   ],
   "require": {
     "laravel/framework": "^6.20.17|^7.30.4|^8.31.0",
-    "minvws/puzi-php": "^0.1"
+    "minvws/puzi-php": "^0.2"
   },
   "require-dev": {
     "phpunit/phpunit": "^9.5",

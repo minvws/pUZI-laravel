@@ -5,8 +5,8 @@ namespace MinVWS\PUZI\Laravel\Services;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Contracts\Auth\Authenticatable;
 use MinVWS\PUZI\Exceptions\UziException;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use MinVWS\PUZI\UziConstants;
 use MinVWS\PUZI\UziReader;
 
 /**
@@ -19,25 +19,16 @@ use MinVWS\PUZI\UziReader;
  */
 class UziService
 {
-    protected const OID_CA_CARE_PROFESSIONAL = '2.16.528.1.1003.1.3.5.5.2'; // Reference page 59
-    protected const OID_CA_NAMED_EMPLOYEE = '2.16.528.1.1003.1.3.5.5.3';    // Reference page 59
-    protected const UZI_ROLE_DOCTOR = '01.';                                // Reference page 89
-    protected const UZI_ROLE_PHARMACIST = '17.';                            // Reference page 89
-    protected const UZI_ROLE_NURSE = '30.';                                 // Reference page 89
-    protected const UZI_ROLE_PHYS_ASSISTANT = '81.';                        // Reference page 89
-    protected const UZI_TYPE_CARE_PROVIDER = 'Z';                           // Reference page 60
-    protected const UZI_TYPE_NAMED_EMPLOYEE = 'N';                          // Reference page 60
-
     protected const ALLOWED_UZI_TYPES = [
-        self::UZI_TYPE_CARE_PROVIDER,
-        self::UZI_TYPE_NAMED_EMPLOYEE
+        UziConstants::UZI_TYPE_CARE_PROVIDER,
+        UziConstants::UZI_TYPE_NAMED_EMPLOYEE
     ];
 
     protected const ALLOWED_UZI_ROLES = [
-        self::UZI_ROLE_DOCTOR,
-        self::UZI_ROLE_PHARMACIST,
-        self::UZI_ROLE_NURSE,
-        self::UZI_ROLE_PHYS_ASSISTANT,
+        UziConstants::UZI_ROLE_DOCTOR,
+        UziConstants::UZI_ROLE_PHARMACIST,
+        UziConstants::UZI_ROLE_NURSE,
+        UziConstants::UZI_ROLE_PHYS_ASSISTANT,
     ];
 
     /** @var bool */
@@ -65,8 +56,8 @@ class UziService
         $data = $this->uzi->getData();
         if (
             $this->strictCaCheck == true &&
-            $data['OidCa'] !== self::OID_CA_CARE_PROFESSIONAL &&
-            $data['OidCa'] !== self::OID_CA_NAMED_EMPLOYEE
+            $data['OidCa'] !== UziConstants::OID_CA_CARE_PROVIDER &&
+            $data['OidCa'] !== UziConstants::OID_CA_NAMED_EMPLOYEE
         ) {
             throw new UziException('CA OID not UZI register Care Provider or named employee');
         }
