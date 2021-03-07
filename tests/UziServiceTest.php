@@ -119,7 +119,7 @@ final class UziServiceTest extends TestCase
         $this->expectException(UziException::class);
         $this->expectExceptionMessage("Incorrect SAN found");
 
-        
+
         $_SERVER['SSL_CLIENT_VERIFY'] = "SUCCESS";
         $_SERVER['SSL_CLIENT_CERT'] = file_get_contents(__DIR__ . '/certs/mock-006-incorrect-san-data.cert');
 
@@ -172,7 +172,7 @@ final class UziServiceTest extends TestCase
         $this->expectException(UziException::class);
         $this->expectExceptionMessage("UZI Role not in ALLOWED_UZI_ROLES");
 
-        
+
         $_SERVER['SSL_CLIENT_VERIFY'] = "SUCCESS";
         $_SERVER['SSL_CLIENT_CERT'] = file_get_contents(__DIR__ . '/certs/mock-010-invalid-roles.cert');
 

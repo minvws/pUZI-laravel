@@ -63,7 +63,8 @@ class UziService
     public function getUserFromUzi(): Authenticatable
     {
         $data = $this->uzi->getData();
-        if ($this->strictCaCheck == true &&
+        if (
+            $this->strictCaCheck == true &&
             $data['OidCa'] !== self::OID_CA_CARE_PROFESSIONAL &&
             $data['OidCa'] !== self::OID_CA_NAMED_EMPLOYEE
         ) {
