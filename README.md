@@ -1,4 +1,6 @@
+![pUZI logo](pUZI.svg "pUZI logo")
 # pUZI Laravel
+
 [![Laravel](https://github.com/annejan/pUZI-laravel/actions/workflows/test.yml/badge.svg)](https://github.com/annejan/pUZI-laravel/actions/workflows/test.yml)
 
 Laravel wrapper for proficient UZI pass reader.
