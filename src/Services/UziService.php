@@ -57,16 +57,13 @@ class UziService
     }
 
     /**
-     * @param Request $request
      * @return Authenticatable
      * @throws UziException
      */
-    public function getUserFromUzi(Request $request): Authenticatable
+    public function getUserFromUzi(): Authenticatable
     {
         $data = $this->uzi->getData();
-
-        if (
-            $this->strictCaCheck == true &&
+        if ($this->strictCaCheck == true &&
             $data['OidCa'] !== self::OID_CA_CARE_PROFESSIONAL &&
             $data['OidCa'] !== self::OID_CA_NAMED_EMPLOYEE
         ) {
@@ -76,7 +73,7 @@ class UziService
             throw new UziException('UZI version not 1');
         }
         if (!in_array($data['CardType'], self::ALLOWED_UZI_TYPES)) {
-            throw new UziException('UZI CrdType not in ALLOWED_UZI_TYPES');
+            throw new UziException('UZI CardType not in ALLOWED_UZI_TYPES');
         }
         if (!in_array(substr($data['Role'], 0, 3), self::ALLOWED_UZI_ROLES)) {
             throw new UziException('UZI Role not in ALLOWED_UZI_ROLES');
