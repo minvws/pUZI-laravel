@@ -50,13 +50,12 @@ class UziController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return RedirectResponse
      */
-    public function login(Request $request): RedirectResponse
+    public function login(): RedirectResponse
     {
         try {
-            $user = $this->uziService->getUserFromUzi($request);
+            $user = $this->uziService->getUserFromUzi();
         } catch (UziException $exception) {
             abort(403, __($exception->getMessage()));
         }
