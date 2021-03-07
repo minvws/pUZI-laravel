@@ -85,3 +85,5 @@ phpseclib - [PHP Secure Communications Library](https://phpseclib.com/)
     ```
 
 7. Send us a Pull Request
+
+![pUZI](pUZI-hidden.svg "pUZI")
