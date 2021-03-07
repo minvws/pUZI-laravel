@@ -1,0 +1,15 @@
+parameters:
+    paths:
+        - src
+        - tests
+    level: 8
+    inferPrivatePropertyTypeFromConstructor: true
+    checkMissingIterableValueType: false
+    ignoreErrors:
+        - '#Cannot call method name\(\) on array\|Illuminate\\Routing\\Route.#'
+        - '#Parameter \#2 \$message of function abort expects string, array\|string\|null given.#'
+        - '#Variable \$user might not be defined.#'
+        - '#Call to an undefined method Illuminate\\Contracts\\Auth\\Factory\|Illuminate\\Contracts\\Auth\\Guard::login\(\).#'
+        - '#Call to an undefined method Illuminate\\Http\\RedirectResponse\|Illuminate\\Routing\\Redirector::route\(\).#'
+        - '#Call to an undefined static method Illuminate\\Foundation\\Auth\\User::whereEmail\(\).#'
+        - '#Call to an undefined static method Illuminate\\Foundation\\Auth\\User::create\(\).#'
