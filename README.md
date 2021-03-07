@@ -5,7 +5,7 @@ Laravel wrapper for proficient UZI pass reader.
 
 ## Requirements
 
-* Laravel 5.6 up, 6, 7 and 8.
+* Laravel 6, 7 and 8.
 
 Apache config (or NginX equivalent):
 ```apacheconf

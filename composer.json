@@ -39,7 +39,7 @@
     }
   ],
   "require": {
-    "laravel/framework": "^5.6|^6.0|^7.0|^8.0",
+    "laravel/framework": "^6.20.17|^7.30.4|^8.31.0",
     "minvws/puzi-php": "^0.1"
   },
   "require-dev": {
