@@ -19,22 +19,16 @@ use MinVWS\PUZI\UziReader;
  */
 class UziService
 {
-    protected const ALLOWED_UZI_TYPES = [
-        UziConstants::UZI_TYPE_CARE_PROVIDER,
-        UziConstants::UZI_TYPE_NAMED_EMPLOYEE
-    ];
-
-    protected const ALLOWED_UZI_ROLES = [
-        UziConstants::UZI_ROLE_DOCTOR,
-        UziConstants::UZI_ROLE_PHARMACIST,
-        UziConstants::UZI_ROLE_NURSE,
-        UziConstants::UZI_ROLE_PHYS_ASSISTANT,
-    ];
 
     /** @var bool */
     protected $strictCaCheck = true;
     /** @var UziReader $uzi */
     protected $uzi;
+
+    /** @var array $allowedTypes */
+    protected $allowedTypes = [];
+    /** @var array $allowedRoles */
+    protected $allowedRoles = [];
 
     /**
      * UziService constructor.
@@ -44,6 +38,8 @@ class UziService
     public function __construct(bool $strictCaCheck)
     {
         $this->strictCaCheck = $strictCaCheck;
+        $this->allowedTypes = config('uzi.allowed_types');
+        $this->allowedRoles = config('uzi.allowed_roles');
         $this->uzi = new UziReader();
     }
 
@@ -64,10 +60,10 @@ class UziService
         if ($data['UziVersion'] !== '1') {
             throw new UziException('UZI version not 1');
         }
-        if (!in_array($data['CardType'], self::ALLOWED_UZI_TYPES)) {
+        if (!in_array($data['CardType'], $this->allowedTypes)) {
             throw new UziException('UZI CardType not in ALLOWED_UZI_TYPES');
         }
-        if (!in_array(substr($data['Role'], 0, 3), self::ALLOWED_UZI_ROLES)) {
+        if (!in_array(substr($data['Role'], 0, 3), $this->allowedRoles)) {
             throw new UziException('UZI Role not in ALLOWED_UZI_ROLES');
         }
         $email = $data['UziNumber'] . '@uzi.pas';

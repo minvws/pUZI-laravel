@@ -3,17 +3,31 @@
 namespace MinVWS\PUZI\Laravel\Tests;
 
 use MinVWS\PUZI\Exceptions\UziException;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use MinVWS\PUZI\Laravel\Services\UziService;
-use PHPUnit\Framework\TestCase;
+use MinVWS\PUZI\UziConstants;
+use Orchestra\Testbench\TestCase;
 
 /**
  * Class UziServiceTest.
  */
 final class UziServiceTest extends TestCase
 {
-    use RefreshDatabase;
-
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->app['config']->set('uzi.allowed_types', [
+            UziConstants::UZI_TYPE_CARE_PROVIDER,
+            UziConstants::UZI_TYPE_NAMED_EMPLOYEE
+        ]);
+        $this->app['config']->set('uzi.allowed_roles', [
+            UziConstants::UZI_ROLE_DOCTOR,
+            UziConstants::UZI_ROLE_DOCTOR,
+            UziConstants::UZI_ROLE_PHARMACIST,
+            UziConstants::UZI_ROLE_NURSE,
+            UziConstants::UZI_ROLE_PHYS_ASSISTANT,
+        ]);
+    }
+    
     public function testCheckRequestHasNoCert(): void
     {
         $service = new UziService(true);
