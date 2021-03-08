@@ -8,7 +8,9 @@ use MinVWS\PUZI\UziConstants;
 use Orchestra\Testbench\TestCase;
 
 /**
- * Class UziServiceTest.
+ * Class UziServiceTest
+ * SPDX-License-Identifier: EUPL-1.2
+ * @package MinVWS\PUZI\Laravel\Tests\Services
  */
 final class UziServiceTest extends TestCase
 {

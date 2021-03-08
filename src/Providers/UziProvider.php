@@ -8,8 +8,8 @@ use MinVWS\PUZI\Laravel\Services\UziService;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Class UziProvider.
- *
+ * Class UziProvider
+ * SPDX-License-Identifier: EUPL-1.2
  * @package MinVWS\PUZI\Laravel\Providers
  */
 class UziProvider extends ServiceProvider
