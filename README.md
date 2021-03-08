@@ -3,7 +3,18 @@
 
 [![Laravel](https://github.com/annejan/pUZI-laravel/actions/workflows/test.yml/badge.svg)](https://github.com/annejan/pUZI-laravel/actions/workflows/test.yml)
 
-Laravel wrapper for proficient UZI pass reader.
+Proficient UZI pass reader in php.
+
+The UZI card is part of an authentication mechanism for medical staff and doctors working in the Netherlands. The cards are distributed by the CIBG. More information and the relevant client software can be found at www.uziregister.nl (in Dutch).
+
+pUZI is a simple and functional module which allows you to use the UZI cards as authentication mechanism. It consists of:
+
+1. a reader that reads the data on the card and gives an UziUser object in return.
+2. middleware (for the Laravel framework) that allows authentication and user creation based on UZI cards (this repository).
+
+pUZI is available under the EU PL licence. It was created early 2021 during the COVID19 campaign as part of the vaccination registration project BRBA for the ‘Ministerie van Volksgezondheid, Welzijn & Sport, programma Realisatie Digitale Ondersteuning.’
+
+Questions and contributions are welcome via [GitHub](https://github.com/minvws/pUZI-laravel/issues).
 
 ## Requirements
 
@@ -53,7 +64,7 @@ TODO:
 
 ## Uses
 
-puzi-php - [Proficient UZI pass reader in PHP](https://github.com/annejan/pUZI-php)
+puzi-php - [Proficient UZI pass reader in PHP](https://github.com/minvws/pUZI-php)
 
 phpseclib - [PHP Secure Communications Library](https://phpseclib.com/)
 
