@@ -1,6 +1,6 @@
 <?php
 
-namespace MinVWS\PUZI\Laravel\Tests;
+namespace MinVWS\PUZI\Laravel\Tests\Services;
 
 use MinVWS\PUZI\Exceptions\UziException;
 use MinVWS\PUZI\Laravel\Services\UziService;
@@ -12,11 +12,17 @@ use Orchestra\Testbench\TestCase;
  */
 final class UziServiceTest extends TestCase
 {
+    /**
+     * @var array
+     */
     protected $allowedTypes = [
         UziConstants::UZI_TYPE_CARE_PROVIDER,
         UziConstants::UZI_TYPE_NAMED_EMPLOYEE
     ];
 
+    /**
+     * @var array 
+     */
     protected $allowedRoles = [
         UziConstants::UZI_ROLE_DOCTOR,
         UziConstants::UZI_ROLE_DOCTOR,
@@ -190,28 +196,27 @@ final class UziServiceTest extends TestCase
         $service->getUserFromUzi();
     }
 
-//    public function testCheckValidCert(): void
-//    {
-//        $service = new UziService(true);
-//
-//        $_SERVER['SSL_CLIENT_VERIFY'] = "SUCCESS";
-//        $_SERVER['SSL_CLIENT_CERT'] = file_get_contents(__DIR__ . '/certs/mock-011-correct.cert');
-//
-//        $user = $service->getUserFromUzi();
-//        $this->assertEquals("12345678@uzi.pas", $user->email);
-//        $this->assertFalse($user->is_admin);
-//    }
-//
-//    public function testCheckValidAdminCert(): void
-//    {
-//        $service = new UziService(true);
-//
-//
-//        $_SERVER['SSL_CLIENT_VERIFY'] = "SUCCESS";
-//        $_SERVER['SSL_CLIENT_CERT'] = file_get_contents(__DIR__ . '/certs/mock-012-correct-admin.cert');
-//
-//        $user = $service->getUserFromUzi();
-//        $this->assertEquals("11111111@uzi.pas", $user->email);
-//        $this->assertTrue($user->is_admin);
-//    }
+    public function testCheckValidCert(): void
+    {
+        $service = new UziService(true);
+
+        $_SERVER['SSL_CLIENT_VERIFY'] = "SUCCESS";
+        $_SERVER['SSL_CLIENT_CERT'] = file_get_contents(__DIR__ . '/certs/mock-011-correct.cert');
+
+        $user = $service->getUserFromUzi();
+        $this->assertEquals("12345678@uzi.pas", $user->email);
+        $this->assertFalse($user->is_admin);
+    }
+
+    public function testCheckValidAdminCert(): void
+    {
+        $service = new UziService(true);
+
+        $_SERVER['SSL_CLIENT_VERIFY'] = "SUCCESS";
+        $_SERVER['SSL_CLIENT_CERT'] = file_get_contents(__DIR__ . '/certs/mock-012-correct-admin.cert');
+
+        $user = $service->getUserFromUzi();
+        $this->assertEquals("11111111@uzi.pas", $user->email);
+        $this->assertTrue($user->is_admin);
+    }
 }
