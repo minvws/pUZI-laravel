@@ -13,7 +13,7 @@
     "UZI"
   ],
   "type": "library",
-  "license": "EUPL",
+  "license": "EUPL-1.2",
   "authors": [
     {
       "name": "Anne Jan Brouwer",
@@ -30,12 +30,6 @@
     {
       "name": "Joshua Thijssen",
       "email": "jthijssen@noxlogic.nl"
-    }
-  ],
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/annejan/pUZI-php"
     }
   ],
   "require": {
