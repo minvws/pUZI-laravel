@@ -21,7 +21,7 @@ final class UziServiceTest extends TestCase
     ];
 
     /**
-     * @var array 
+     * @var array
      */
     protected $allowedRoles = [
         UziConstants::UZI_ROLE_DOCTOR,
