@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace MinVWS\PUZI\Laravel\Services;
 
@@ -19,12 +20,11 @@ use MinVWS\PUZI\UziReader;
  */
 class UziService
 {
-
-    /** @var bool */
-    protected $strictCaCheck = true;
     /** @var UziReader $uzi */
     protected $uzi;
 
+    /** @var bool */
+    protected $strictCaCheck = true;
     /** @var array $allowedTypes */
     protected $allowedTypes = [];
     /** @var array $allowedRoles */
@@ -34,12 +34,14 @@ class UziService
      * UziService constructor.
      *
      * @param bool $strictCaCheck
+     * @param array $allowedTypes
+     * @param array $allowedRoles
      */
-    public function __construct(bool $strictCaCheck)
+    public function __construct(bool $strictCaCheck, array $allowedTypes, array $allowedRoles)
     {
         $this->strictCaCheck = $strictCaCheck;
-        $this->allowedTypes = config('uzi.allowed_types');
-        $this->allowedRoles = config('uzi.allowed_roles');
+        $this->allowedTypes = $allowedTypes;
+        $this->allowedRoles = $allowedRoles;
         $this->uzi = new UziReader();
     }
 
@@ -66,6 +68,7 @@ class UziService
         if (!in_array(substr($data['Role'], 0, 3), $this->allowedRoles)) {
             throw new UziException('UZI Role not in ALLOWED_UZI_ROLES');
         }
+
         $email = $data['UziNumber'] . '@uzi.pas';
         $user = User::whereEmail($email)->first();
         if ($user === null) {
@@ -77,6 +80,7 @@ class UziService
             $user->password_updated_at = now();
             $user->save();
         }
+
         return $user;
     }
 }
