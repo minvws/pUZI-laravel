@@ -21,11 +21,16 @@ class UziProvider extends ServiceProvider
      */
     public function boot()
     {
-         $this->publishes([
+        $this->publishes([
             __DIR__ . '/../../config/uzi.php' => config_path('uzi.php'),
-         ]);
+        ]);
+
         $this->app->singleton(UziService::class, function () {
-            return new UziService(config("uzi.strict_ca_check", true));
+            return new UziService(
+                config("uzi.strict_ca_check", true),
+                config('uzi.allowed_types', []),
+                config('uzi.allowed_roles', [])
+            );
         });
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace MinVWS\PUZI\Laravel\Tests;
+namespace MinVWS\PUZI\Laravel\Tests\Services;
 
 use MinVWS\PUZI\Exceptions\UziException;
 use MinVWS\PUZI\Laravel\Services\UziService;
@@ -12,25 +12,28 @@ use Orchestra\Testbench\TestCase;
  */
 final class UziServiceTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->app['config']->set('uzi.allowed_types', [
-            UziConstants::UZI_TYPE_CARE_PROVIDER,
-            UziConstants::UZI_TYPE_NAMED_EMPLOYEE
-        ]);
-        $this->app['config']->set('uzi.allowed_roles', [
-            UziConstants::UZI_ROLE_DOCTOR,
-            UziConstants::UZI_ROLE_DOCTOR,
-            UziConstants::UZI_ROLE_PHARMACIST,
-            UziConstants::UZI_ROLE_NURSE,
-            UziConstants::UZI_ROLE_PHYS_ASSISTANT,
-        ]);
-    }
+    /**
+     * @var array
+     */
+    protected $allowedTypes = [
+        UziConstants::UZI_TYPE_CARE_PROVIDER,
+        UziConstants::UZI_TYPE_NAMED_EMPLOYEE
+    ];
+
+    /**
+     * @var array
+     */
+    protected $allowedRoles = [
+        UziConstants::UZI_ROLE_DOCTOR,
+        UziConstants::UZI_ROLE_DOCTOR,
+        UziConstants::UZI_ROLE_PHARMACIST,
+        UziConstants::UZI_ROLE_NURSE,
+        UziConstants::UZI_ROLE_PHYS_ASSISTANT,
+    ];
 
     public function testCheckRequestHasNoCert(): void
     {
-        $service = new UziService(true);
+        $service = new UziService(true, $this->allowedTypes, $this->allowedRoles);
 
         $this->expectException(UziException::class);
         $this->expectExceptionMessage("Webserver client cert check not passed");
@@ -40,7 +43,7 @@ final class UziServiceTest extends TestCase
 
     public function testCheckSSLClientFailed(): void
     {
-        $service = new UziService(true);
+        $service = new UziService(true, $this->allowedTypes, $this->allowedRoles);
 
         $this->expectException(UziException::class);
         $this->expectExceptionMessage("Webserver client cert check not passed");
@@ -51,7 +54,7 @@ final class UziServiceTest extends TestCase
 
     public function testCheckNoClientCert(): void
     {
-        $service = new UziService(true);
+        $service = new UziService(true, $this->allowedTypes, $this->allowedRoles);
 
         $this->expectException(UziException::class);
         $this->expectExceptionMessage("No client certificate presented");
@@ -63,7 +66,7 @@ final class UziServiceTest extends TestCase
 
     public function testCheckCertWithoutValidData(): void
     {
-        $service = new UziService(true);
+        $service = new UziService(true, $this->allowedTypes, $this->allowedRoles);
 
         $this->expectException(UziException::class);
         $this->expectExceptionMessage("No valid UZI data found");
@@ -76,7 +79,7 @@ final class UziServiceTest extends TestCase
 
     public function testCheckCertWithInvalidSAN(): void
     {
-        $service = new UziService(true);
+        $service = new UziService(true, $this->allowedTypes, $this->allowedRoles);
 
         $this->expectException(UziException::class);
         $this->expectExceptionMessage("No valid UZI data found");
@@ -89,7 +92,7 @@ final class UziServiceTest extends TestCase
 
     public function testCheckCertWithInvalidOthername(): void
     {
-        $service = new UziService(true);
+        $service = new UziService(true, $this->allowedTypes, $this->allowedRoles);
 
         $this->expectException(UziException::class);
         $this->expectExceptionMessage("No valid UZI data found");
@@ -102,7 +105,7 @@ final class UziServiceTest extends TestCase
 
     public function testCheckCertWithoutIa5string(): void
     {
-        $service = new UziService(true);
+        $service = new UziService(true, $this->allowedTypes, $this->allowedRoles);
 
         $this->expectException(UziException::class);
         $this->expectExceptionMessage("No ia5String");
@@ -115,7 +118,7 @@ final class UziServiceTest extends TestCase
 
     public function testCheckCertIncorrectSanData(): void
     {
-        $service = new UziService(true);
+        $service = new UziService(true, $this->allowedTypes, $this->allowedRoles);
 
         $this->expectException(UziException::class);
         $this->expectExceptionMessage("Incorrect SAN found");
@@ -128,7 +131,7 @@ final class UziServiceTest extends TestCase
 
     public function testCheckCertIncorrectSanData2(): void
     {
-        $service = new UziService(true);
+        $service = new UziService(true, $this->allowedTypes, $this->allowedRoles);
 
         $this->expectException(UziException::class);
         $this->expectExceptionMessage("Incorrect SAN found");
@@ -142,7 +145,7 @@ final class UziServiceTest extends TestCase
 
     public function testCheckCheckStrictCA(): void
     {
-        $service = new UziService(true);
+        $service = new UziService(true, $this->allowedTypes, $this->allowedRoles);
 
         $this->expectException(UziException::class);
         $this->expectExceptionMessage("CA OID not UZI register Care Provider or named employee");
@@ -155,7 +158,7 @@ final class UziServiceTest extends TestCase
 
     public function testCheckCheckStrictCA2(): void
     {
-        $service = new UziService(false);
+        $service = new UziService(false, $this->allowedTypes, $this->allowedRoles);
 
         $this->expectException(UziException::class);
         $this->expectExceptionMessage("UZI version not 1");
@@ -168,7 +171,7 @@ final class UziServiceTest extends TestCase
 
     public function testCheckNotAllowedTypes(): void
     {
-        $service = new UziService(true);
+        $service = new UziService(true, $this->allowedTypes, $this->allowedRoles);
 
         $this->expectException(UziException::class);
         $this->expectExceptionMessage("UZI CardType not in ALLOWED_UZI_TYPES");
@@ -181,7 +184,7 @@ final class UziServiceTest extends TestCase
 
     public function testCheckNotAllowedRoles(): void
     {
-        $service = new UziService(true);
+        $service = new UziService(true, $this->allowedTypes, $this->allowedRoles);
 
         $this->expectException(UziException::class);
         $this->expectExceptionMessage("UZI Role not in ALLOWED_UZI_ROLES");
@@ -195,7 +198,7 @@ final class UziServiceTest extends TestCase
 
 //    public function testCheckValidCert(): void
 //    {
-//        $service = new UziService(true);
+//        $service = new UziService(true, $this->allowedTypes, $this->allowedRoles);
 //
 //        $_SERVER['SSL_CLIENT_VERIFY'] = "SUCCESS";
 //        $_SERVER['SSL_CLIENT_CERT'] = file_get_contents(__DIR__ . '/certs/mock-011-correct.cert');
@@ -207,8 +210,7 @@ final class UziServiceTest extends TestCase
 //
 //    public function testCheckValidAdminCert(): void
 //    {
-//        $service = new UziService(true);
-//
+//        $service = new UziService(true, $this->allowedTypes, $this->allowedRoles);
 //
 //        $_SERVER['SSL_CLIENT_VERIFY'] = "SUCCESS";
 //        $_SERVER['SSL_CLIENT_CERT'] = file_get_contents(__DIR__ . '/certs/mock-012-correct-admin.cert');
