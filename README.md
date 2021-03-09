@@ -92,7 +92,7 @@ phpseclib - [PHP Secure Communications Library](https://phpseclib.com/)
     ```sh
     vendor/bin/phpstan analyse
     vendor/bin/psalm
-    vVendor/bin/phpcs
+    vendor/bin/phpcs
     ```
 
 7. Send us a Pull Request
