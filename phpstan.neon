@@ -11,5 +11,4 @@ parameters:
         - '#Variable \$user might not be defined.#'
         - '#Call to an undefined method Illuminate\\Contracts\\Auth\\Factory\|Illuminate\\Contracts\\Auth\\Guard::login\(\).#'
         - '#Call to an undefined method Illuminate\\Http\\RedirectResponse\|Illuminate\\Routing\\Redirector::route\(\).#'
-        - '#Call to an undefined static method Illuminate\\Foundation\\Auth\\User::whereEmail\(\).#'
-        - '#Call to an undefined static method Illuminate\\Foundation\\Auth\\User::create\(\).#'
+        - '#Call to an undefined static method Illuminate\\Foundation\\Auth\\User::firstOrNew\(\).#'

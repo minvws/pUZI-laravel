@@ -71,13 +71,11 @@ class UziService
         }
 
         $email = $data['UziNumber'] . '@uzi.pas';
-        $user = User::whereEmail($email)->first();
-        if ($user === null) {
-            $user = User::create([
-                'email' => $email,
-                'name' => $data['givenName'] . $data['surName'],
-                'password' => Hash::make(uniqid()),
-            ]);
+        $user = User::firstOrNew(
+            ['email' => $email],
+            ['name' => $data['givenName'] . $data['surName'], 'password' => Hash::make(uniqid())],
+        );
+        if ($user->wasRecentlyCreated === true) {
             if (Schema::hasColumn('users', 'password_updated_at')) {
                 $user->password_updated_at = now();
             }
