@@ -6,6 +6,7 @@ namespace MinVWS\PUZI\Laravel\Services;
 
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Schema;
 use MinVWS\PUZI\Exceptions\UziException;
 use Illuminate\Support\Facades\Hash;
 use MinVWS\PUZI\UziConstants;
@@ -77,7 +78,9 @@ class UziService
                 'name' => $data['givenName'] . $data['surName'],
                 'password' => Hash::make(uniqid()),
             ]);
-            $user->password_updated_at = now();
+            if (Schema::hasColumn('users', 'password_updated_at')) {
+                $user->password_updated_at = now();
+            }
             $user->save();
         }
 
