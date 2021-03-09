@@ -1,0 +1,50 @@
+{
+    "name": "minvws/puzi-laravel",
+    "description": "Laravel authentication middleware for UZI passes.",
+    "type": "laravel",
+    "license": "EUPL",
+    "keywords": [
+      "security",
+      "crypto",
+      "cryptography",
+      "signature",
+      "x509",
+      "x.509",
+      "asn1",
+      "asn.1",
+      "UZI"
+    ],
+    "autoload": {
+        "psr-4": { "MinVWS\\Laravel\\Puzi\\": "src" }
+    },
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.3",
+        "minvws/puzi-php": "^0.3"
+    },
+    "authors": [
+      {
+        "name": "Anne Jan Brouwer",
+        "email": "brouwer@annejan.com"
+      },
+      {
+        "name": "Nick ten Cate",
+        "email": "nick@nicktencate.com"
+      },
+      {
+        "name": "Mendel Mobach",
+        "email": "mendel@mobach.nl"
+      },
+      {
+        "name": "Joshua Thijssen",
+        "email": "jthijssen@noxlogic.nl"
+      }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MinVWS\\Laravel\\Puzi\\UziServiceProvider"
+            ]
+        }
+    }
+}
