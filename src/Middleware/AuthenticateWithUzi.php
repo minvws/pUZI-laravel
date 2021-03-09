@@ -5,10 +5,10 @@ namespace MinVWS\Laravel\Puzi\Middleware;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Auth\AuthenticationException;
 use Closure;
-use MinVWS\Laravel\Puzi\AuthenticatableUziUser;
-use MinVWS\Laravel\Puzi\UziValidator;
 use MinVWS\PUZI\Exceptions\UziException;
+use MinVWS\Puzi\Laravel\AuthenticatableUziUser;
 use MinVWS\PUZI\UziReader;
+use MinVWS\PUZI\UziValidator;
 
 class AuthenticateWithUzi
 {
@@ -51,7 +51,8 @@ class AuthenticateWithUzi
     public function handle($request, Closure $next, $guard = null)
     {
         if (! $request->secure()) {
-            return abort(400, 'The UZI auth requires a HTTPS connection.');
+            abort(400, 'The UZI auth requires a HTTPS connection.');
+            return;
         }
 
         try {

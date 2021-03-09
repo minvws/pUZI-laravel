@@ -1,13 +1,18 @@
 <?php
 
-namespace MinVWS\Laravel\Puzi;
+namespace MinVWS\Puzi\Laravel;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use MinVWS\PUZI\UziUser as BaseUziUser;
 
 class AuthenticatableUziUser extends BaseUziUser implements Authenticatable
 {
-    static function fromUziUser(BaseUziUser $base): self {
+    /**
+     * @param BaseUziUser $base
+     * @return self
+     */
+    public static function fromUziUser(BaseUziUser $base): self
+    {
         $user = new self();
         $user->setAgbCode($base->getAgbCode());
         $user->setCardType($base->getCardType());
@@ -22,32 +27,50 @@ class AuthenticatableUziUser extends BaseUziUser implements Authenticatable
         return $user;
     }
 
+    /**
+     * @return string
+     */
     public function getAuthIdentifierName()
     {
         return "uzi_number";
     }
 
+    /**
+     * @return mixed|string
+     */
     public function getAuthIdentifier()
     {
         return $this->getUziNumber();
     }
 
+    /**
+     * @return string
+     */
     public function getAuthPassword()
     {
         return "";
     }
 
+    /**
+     * @return string
+     */
     public function getRememberToken()
     {
-        return false;
+        return "";
     }
 
+    /**
+     * @param string $value
+     */
     public function setRememberToken($value)
     {
     }
 
+    /**
+     * @return string
+     */
     public function getRememberTokenName()
     {
-        return false;
+        return "";
     }
 }

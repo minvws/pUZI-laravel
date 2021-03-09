@@ -1,12 +1,12 @@
 <?php
 
 return [
-    // True if the CA must be checked on the x509 certificate
+    // True if the CA must be checked on the x509 certificate, set to false for using test cards
     'strict_ca_check' => env('UZI_STRICT_CA_CHECK', true),
 
-    // Allowed types
+    // Which card types are allowed to log in
     'allowed_types' => [],
 
-    // Allowed roles
+    // Which roles are allowed to log in
     'allowed_roles' => [],
 ];

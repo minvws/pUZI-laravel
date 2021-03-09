@@ -1,0 +1,49 @@
+name: Testing
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  tests:
+
+    runs-on: ubuntu-20.04
+
+    strategy:
+      max-parallel: 3
+      matrix:
+        php: [ 8.0, 7.4, 7.3 ]
+        laravel: [ 8.*, 7.*, 6.* ]
+        dependency-version: [ prefer-stable ]
+        include:
+          - laravel: 8.*
+            testbench: 6.*
+            phpunit: ^8.5
+          - laravel: 7.*
+            testbench: 5.*
+            phpunit: ^8.5
+          - laravel: 6.*
+            testbench: 4.*
+            phpunit: 8.*
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install PHP
+      uses: shivammathur/setup-php@master
+      with:
+        php-version: ${{ matrix.php }}
+        extensions: xdebug
+    - name: Install Dependencies
+      run: |
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "phpunit/phpunit:${{ matrix.phpunit }}" --no-interaction --no-update
+          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
+    - name: Execute tests (Unit and Feature)
+      run: vendor/bin/phpunit --coverage-text
+    - name: Static analysis with PHPStan
+      run: vendor/bin/phpstan analyse
+    - name: Static analysis with Psalm
+      run: vendor/bin/psalm
+    - name: Coding style PSR12 Check
+      run: vendor/bin/phpcs 
