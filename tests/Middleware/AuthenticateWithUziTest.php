@@ -22,7 +22,6 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
  */
 class AuthenticateWithUziTest extends TestCase
 {
-
     /**
      * @var Factory|Mockery\MockInterface|Mockery\LegacyMockInterface
      */
@@ -104,7 +103,6 @@ class AuthenticateWithUziTest extends TestCase
         });
         $this->assertNull($result);
     }
-
 
     /**
      * @return AuthenticateWithUzi
