@@ -15,7 +15,7 @@
       "UZI"
     ],
     "autoload": {
-        "psr-4": { "MinVWS\\Puzi\\Laravel\\": "src" }
+        "psr-4": { "MinVWS\\PUZI\\Laravel\\": "src" }
     },
     "autoload-dev": {
       "psr-4": {
@@ -57,7 +57,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "MinVWS\\Laravel\\Puzi\\UziServiceProvider"
+                "MinVWS\\Laravel\\PUZI\\UziServiceProvider"
             ]
         }
     },

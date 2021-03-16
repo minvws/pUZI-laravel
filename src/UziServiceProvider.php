@@ -1,10 +1,15 @@
 <?php
 
-namespace MinVWS\Puzi\Laravel;
+namespace MinVWS\PUZI\Laravel;
 
 use Illuminate\Support\ServiceProvider;
 use MinVWS\PUZI\UziValidator;
 
+/**
+ * Class UziServiceProvider
+ * SPDX-License-Identifier: EUPL-1.2
+ * @package MinVWS\PUZI\Laravel
+ */
 class UziServiceProvider extends ServiceProvider
 {
     /**

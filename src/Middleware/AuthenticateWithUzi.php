@@ -1,19 +1,24 @@
 <?php
 
-namespace MinVWS\Puzi\Laravel\Middleware;
+namespace MinVWS\PUZI\Laravel\Middleware;
 
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Auth\AuthenticationException;
 use Closure;
 use MinVWS\PUZI\Exceptions\UziException;
-use MinVWS\Puzi\Laravel\AuthenticatableUziUser;
+use MinVWS\PUZI\Laravel\AuthenticatableUziUser;
 use MinVWS\PUZI\UziReader;
 use MinVWS\PUZI\UziValidator;
 
+/**
+ * Class AuthenticateWithUzi
+ * SPDX-License-Identifier: EUPL-1.2
+ * @package MinVWS\PUZI\Laravel\Middleware
+ */
 class AuthenticateWithUzi
 {
     /**
-     * @var \Illuminate\Contracts\Auth\Factory
+     * @var Auth
      */
     protected $auth;
 
@@ -29,7 +34,7 @@ class AuthenticateWithUzi
     /**
      * Create a new middleware instance.
      *
-     * @param \Illuminate\Contracts\Auth\Factory $auth
+     * @param Auth $auth
      * @param UziReader $reader
      * @param UziValidator $validator
      */
@@ -43,10 +48,11 @@ class AuthenticateWithUzi
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure                  $next
-     * @param  null|string               $guard
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
+     * @param null|string $guard
      * @return mixed
+     * @throws AuthenticationException
      */
     public function handle($request, Closure $next, $guard = null)
     {

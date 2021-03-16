@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Unit\Middleware;
+namespace MinVWS\PUZI\Laravel\Tests\Middleware;
 
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Auth\Factory;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use MinVWS\PUZI\Exceptions\UziException;
-use MinVWS\Puzi\Laravel\Middleware\AuthenticateWithUzi;
+use MinVWS\PUZI\Laravel\Middleware\AuthenticateWithUzi;
 use MinVWS\PUZI\UziReader;
 use MinVWS\PUZI\UziUser;
 use MinVWS\PUZI\UziValidator;
@@ -15,7 +15,13 @@ use Mockery;
 use Orchestra\Testbench\TestCase;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class AuthenticateWithUziTest extends TestCase {
+/**
+ * Class AuthenticateWithUziTest
+ * SPDX-License-Identifier: EUPL-1.2
+ * @package Tests\Unit\Middleware
+ */
+class AuthenticateWithUziTest extends TestCase
+{
 
     /**
      * @var Factory|Mockery\LegacyMockInterface|Mockery\MockInterface
@@ -30,7 +36,8 @@ class AuthenticateWithUziTest extends TestCase {
      */
     protected $mockReader;
 
-    function testOnHttp() {
+    public function testOnHttp()
+    {
 
         $request = new Request();
         $request->server->set('HTTPS', 'off');
@@ -40,10 +47,12 @@ class AuthenticateWithUziTest extends TestCase {
         $this->expectException(HttpException::class);
         $this->expectExceptionMessage("requires a HTTPS connection");
 
-        $middleware->handle($request, function () {});
+        $middleware->handle($request, function () {
+        });
     }
 
-    function testNotValidated() {
+    public function testNotValidated()
+    {
 
         $request = new Request();
         $request->server->set('HTTPS', 'on');
@@ -56,10 +65,12 @@ class AuthenticateWithUziTest extends TestCase {
 
         $this->expectException(AuthenticationException::class);
 
-        $middleware->handle($request, function () {});
+        $middleware->handle($request, function () {
+        });
     }
 
-    function testExceptionDuringValidation() {
+    public function testExceptionDuringValidation()
+    {
 
         $request = new Request();
         $request->server->set('HTTPS', 'on');
@@ -69,10 +80,12 @@ class AuthenticateWithUziTest extends TestCase {
         $this->mockReader->shouldReceive('getDataFromRequest')->andThrow(new UziException());
         $this->expectException(AuthenticationException::class);
 
-        $middleware->handle($request, function () {});
+        $middleware->handle($request, function () {
+        });
     }
 
-    function testValidated() {
+    public function testValidated()
+    {
 
         $request = new Request();
         $request->server->set('HTTPS', 'on');
@@ -88,7 +101,8 @@ class AuthenticateWithUziTest extends TestCase {
         $mockGuard->shouldReceive('login');
         $this->mockFactory->shouldReceive('guard')->andReturns($mockGuard);
 
-        $result = $middleware->handle($request, function () {});
+        $result = $middleware->handle($request, function () {
+        });
         $this->assertNull($result);
     }
 
