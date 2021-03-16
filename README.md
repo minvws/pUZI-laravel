@@ -54,13 +54,42 @@ Add the following to your `composer.json` and then run `composer install`.
 
 ## Usage
 
-TODO:
+```sh
+php artisan vendor:publish --provider="MinVWS\PUZI\Laravel\UziServiceProvider"
+```
 
-* User model
-* Middleware
-* Move allowed types etc to configuration
-* More and tests
-* Add usage documentation
+Add to `$routeMiddleware` array in `app/Http/Kernel.php`:
+
+```php
+    'auth.uzi' => \MinVWS\PUZI\Laravel\Middleware\AuthenticateWithUzi::class,
+```
+
+Add some `allowed_types` and `allowed_roles` to the `config/uzi.php`.
+
+For example:
+```php
+    // Which card types are allowed to log in
+    'allowed_types' => [
+        \MinVWS\PUZI\UziConstants::UZI_TYPE_CARE_PROVIDER
+    ],
+
+    // Which roles are allowed to log in
+    'allowed_roles' => [
+        \MinVWS\PUZI\UziConstants::UZI_ROLE_DOCTOR
+    ],
+```
+
+In `routes/web.php` add the middleware to some routes, for example:
+```php
+Route::middleware(['auth:web,auth.uzi'])->group(function () {
+    Route::get('/any', [Controller::class, 'all'])->name('any');
+    Route::get('/all', [Controller::class, 'all'])->name('all');
+});
+
+Route::middleware('auth.uzi')->group(function () {
+    Route::get('/uzi', [Controller::class, 'uzi'])->name('uzi');
+});
+```
 
 ## Uses
 
