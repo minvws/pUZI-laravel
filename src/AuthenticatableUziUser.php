@@ -1,6 +1,6 @@
 <?php
 
-namespace MinVWS\Puzi\Laravel;
+namespace MinVWS\PUZI\Laravel;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use MinVWS\PUZI\UziUser as BaseUziUser;

@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use MinVWS\Puzi\Laravel\AuthenticatableUziUser;
+use MinVWS\PUZI\Laravel\AuthenticatableUziUser;
 use MinVWS\PUZI\UziConstants;
 use MinVWS\PUZI\UziUser;
 use PHPUnit\Framework\TestCase;

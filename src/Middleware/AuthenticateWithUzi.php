@@ -1,12 +1,12 @@
 <?php
 
-namespace MinVWS\Puzi\Laravel\Middleware;
+namespace MinVWS\PUZI\Laravel\Middleware;
 
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Auth\AuthenticationException;
 use Closure;
 use MinVWS\PUZI\Exceptions\UziException;
-use MinVWS\Puzi\Laravel\AuthenticatableUziUser;
+use MinVWS\PUZI\Laravel\AuthenticatableUziUser;
 use MinVWS\PUZI\UziReader;
 use MinVWS\PUZI\UziValidator;
 

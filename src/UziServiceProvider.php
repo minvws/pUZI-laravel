@@ -1,6 +1,6 @@
 <?php
 
-namespace MinVWS\Puzi\Laravel;
+namespace MinVWS\PUZI\Laravel;
 
 use Illuminate\Support\ServiceProvider;
 use MinVWS\PUZI\UziValidator;

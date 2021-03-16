@@ -1,6 +1,6 @@
 <?php
 
-namespace MinVWS\Puzi\Laravel\Exceptions;
+namespace MinVWS\PUZI\Laravel\Exceptions;
 
 use Exception;
 

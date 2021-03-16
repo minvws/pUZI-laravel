@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\Factory;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use MinVWS\PUZI\Exceptions\UziException;
-use MinVWS\Puzi\Laravel\Middleware\AuthenticateWithUzi;
+use MinVWS\PUZI\Laravel\Middleware\AuthenticateWithUzi;
 use MinVWS\PUZI\UziReader;
 use MinVWS\PUZI\UziUser;
 use MinVWS\PUZI\UziValidator;
