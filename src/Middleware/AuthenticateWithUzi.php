@@ -10,6 +10,11 @@ use MinVWS\PUZI\Laravel\AuthenticatableUziUser;
 use MinVWS\PUZI\UziReader;
 use MinVWS\PUZI\UziValidator;
 
+/**
+ * Class AuthenticateWithUzi
+ * SPDX-License-Identifier: EUPL-1.2
+ * @package MinVWS\PUZI\Laravel\Middleware
+ */
 class AuthenticateWithUzi
 {
     /**

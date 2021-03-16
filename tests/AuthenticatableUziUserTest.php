@@ -1,12 +1,17 @@
 <?php
 
-namespace Tests\Unit;
+namespace MinVWS\PUZI\Laravel\Tests;
 
 use MinVWS\PUZI\Laravel\AuthenticatableUziUser;
 use MinVWS\PUZI\UziConstants;
 use MinVWS\PUZI\UziUser;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class AuthenticatableUziUserTest
+ * SPDX-License-Identifier: EUPL-1.2
+ * @package Tests\Unit
+ */
 class AuthenticatableUziUserTest extends TestCase
 {
     public function testAuthenticableUser(): void

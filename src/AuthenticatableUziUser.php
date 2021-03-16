@@ -5,6 +5,11 @@ namespace MinVWS\PUZI\Laravel;
 use Illuminate\Contracts\Auth\Authenticatable;
 use MinVWS\PUZI\UziUser as BaseUziUser;
 
+/**
+ * Class AuthenticatableUziUser
+ * SPDX-License-Identifier: EUPL-1.2
+ * @package MinVWS\PUZI\Laravel
+ */
 class AuthenticatableUziUser extends BaseUziUser implements Authenticatable
 {
     /**
