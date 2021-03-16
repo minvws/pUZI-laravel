@@ -26,7 +26,7 @@
     "require": {
         "php": ">=7.3",
         "minvws/puzi-php": "^0.4",
-        "laravel/framework": "^6.0|^7.0|^8.0",
+        "laravel/framework": "^6.0|^7.0|^8.0"
     },
     "require-dev": {
       "phpunit/phpunit": "^9.5",
