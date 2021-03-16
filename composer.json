@@ -2,7 +2,7 @@
     "name": "minvws/puzi-laravel",
     "description": "Laravel authentication middleware for UZI passes.",
     "type": "laravel",
-    "license": "EUPL",
+    "license": "EUPL-1.2",
     "keywords": [
       "security",
       "crypto",
