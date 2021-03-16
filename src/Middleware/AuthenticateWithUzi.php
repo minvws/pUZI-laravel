@@ -13,7 +13,7 @@ use MinVWS\PUZI\UziValidator;
 class AuthenticateWithUzi
 {
     /**
-     * @var \Illuminate\Contracts\Auth\Factory
+     * @var Auth
      */
     protected $auth;
 
@@ -29,7 +29,7 @@ class AuthenticateWithUzi
     /**
      * Create a new middleware instance.
      *
-     * @param \Illuminate\Contracts\Auth\Factory $auth
+     * @param Auth $auth
      * @param UziReader $reader
      * @param UziValidator $validator
      */
@@ -43,10 +43,11 @@ class AuthenticateWithUzi
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure                  $next
-     * @param  null|string               $guard
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
+     * @param null|string $guard
      * @return mixed
+     * @throws AuthenticationException
      */
     public function handle($request, Closure $next, $guard = null)
     {
