@@ -22,23 +22,24 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
  */
 class AuthenticateWithUziTest extends TestCase
 {
-
     /**
-     * @var Factory|Mockery\LegacyMockInterface|Mockery\MockInterface
+     * @var Factory|Mockery\MockInterface|Mockery\LegacyMockInterface
      */
     protected $mockFactory;
     /**
-     * @var UziValidator|Mockery\LegacyMockInterface|Mockery\MockInterface
+     * @var UziValidator|Mockery\MockInterface|Mockery\LegacyMockInterface
      */
     protected $mockValidator;
     /**
-     * @var UziReader|Mockery\LegacyMockInterface|Mockery\MockInterface
+     * @var UziReader|Mockery\MockInterface|Mockery\LegacyMockInterface
      */
     protected $mockReader;
 
-    public function testOnHttp()
+    /**
+     * @throws AuthenticationException
+     */
+    public function testOnHttp(): void
     {
-
         $request = new Request();
         $request->server->set('HTTPS', 'off');
 
@@ -51,16 +52,15 @@ class AuthenticateWithUziTest extends TestCase
         });
     }
 
-    public function testNotValidated()
+    public function testNotValidated(): void
     {
-
         $request = new Request();
         $request->server->set('HTTPS', 'on');
 
         $middleware = $this->getMiddleware();
 
         $user = new UziUser();
-        $this->mockReader->shouldReceive('getDataFromRequest')->andReturns($user);
+        $this->mockReader->shouldReceive('getDataFromRequest')->andReturn($user);
         $this->mockValidator->shouldReceive('isValid')->andReturns(false);
 
         $this->expectException(AuthenticationException::class);
@@ -69,9 +69,8 @@ class AuthenticateWithUziTest extends TestCase
         });
     }
 
-    public function testExceptionDuringValidation()
+    public function testExceptionDuringValidation(): void
     {
-
         $request = new Request();
         $request->server->set('HTTPS', 'on');
 
@@ -84,9 +83,8 @@ class AuthenticateWithUziTest extends TestCase
         });
     }
 
-    public function testValidated()
+    public function testValidated(): void
     {
-
         $request = new Request();
         $request->server->set('HTTPS', 'on');
 
@@ -105,7 +103,6 @@ class AuthenticateWithUziTest extends TestCase
         });
         $this->assertNull($result);
     }
-
 
     /**
      * @return AuthenticateWithUzi
