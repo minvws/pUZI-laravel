@@ -19,7 +19,7 @@ jobs:
         dependency-version: [ prefer-stable ]
         include:
           - laravel: 9.*
-            testbench: 7.*
+            testbench: 6.*
             phpunit: ^9.5
           - laravel: 8.*
             testbench: 6.*
