@@ -25,7 +25,7 @@
     "prefer-stable": true,
     "require": {
         "php": "^8.0",
-        "minvws/puzi-php": "^1.0",
+        "minvws/puzi-php": "^1.1",
         "laravel/framework": "^8.0|^9.0"
     },
     "require-dev": {
