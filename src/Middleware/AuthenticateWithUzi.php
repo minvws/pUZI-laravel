@@ -61,11 +61,14 @@ class AuthenticateWithUzi
         }
 
         try {
-            $uziUser = $this->uziReader->getDataFromRequest($request);
-            if (!$this->uziValidator->isValid($uziUser)) {
+            if (!$this->uziValidator->isValid($request)) {
                 throw new AuthenticationException('Unauthenticated.');
             }
 
+            $uziUser = $this->uziReader->getDataFromRequest($request);
+            if (! $uziUser) {
+                throw new AuthenticationException('Unauthenticated.');
+            }
             $this->auth->guard($guard)->login(AuthenticatableUziUser::fromUziUser($uziUser), false);
 
             return $next($request);
