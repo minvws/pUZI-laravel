@@ -9,4 +9,7 @@ return [
 
     // Which roles are allowed to log in
     'allowed_roles' => [],
+
+    // The CA certificates to use for validating the UZI certificate. Must be concatenated in a single file.
+    'ca_certs_path' => env('UZI_CA_CERTS_PATH', null),
 ];

@@ -76,7 +76,22 @@ class AuthenticateWithUziTest extends TestCase
 
         $middleware = $this->getMiddleware();
 
-        $this->mockReader->shouldReceive('getDataFromRequest')->andThrow(new UziException());
+        $this->mockValidator->shouldReceive('isValid')->andReturnFalse();
+        $this->expectException(AuthenticationException::class);
+
+        $middleware->handle($request, function () {
+        });
+    }
+
+    public function testNoUziInfo(): void
+    {
+        $request = new Request();
+        $request->server->set('HTTPS', 'on');
+
+        $middleware = $this->getMiddleware();
+
+        $this->mockValidator->shouldReceive('isValid')->andReturnFalse();
+        $this->mockReader->shouldReceive('getDataFromRequest')->andReturnNull();
         $this->expectException(AuthenticationException::class);
 
         $middleware->handle($request, function () {
