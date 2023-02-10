@@ -49,7 +49,7 @@ Add the following to your `composer.json` and then run `composer install`.
 ```json
 {
     "require": {
-        "minvws/puzi-laravel": "^0.1"
+        "minvws/puzi-laravel": "^v3.0"
     }
 }
 ```
