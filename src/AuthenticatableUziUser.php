@@ -28,6 +28,7 @@ class AuthenticatableUziUser extends BaseUziUser implements Authenticatable
         $user->setSurName($base->getSurName());
         $user->setUziNumber($base->getUziNumber());
         $user->setUziVersion($base->getUziVersion());
+        $user->setSerialNumber($base->getSerialNumber());
 
         return $user;
     }
