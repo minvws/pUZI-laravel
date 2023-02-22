@@ -20,7 +20,8 @@ Questions and contributions are welcome via [GitHub](https://github.com/minvws/p
 
 ## Requirements
 
-* Laravel 6, 7 and 8.
+* PHP 8
+* Laravel 8 or 9.
 
 Apache config (or NginX equivalent):
 ```apacheconf
