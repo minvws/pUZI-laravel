@@ -26,6 +26,7 @@ class AuthenticatableUziUserTest extends TestCase
         $user->setSurName("doe");
         $user->setUziNumber("123");
         $user->setUziVersion("1");
+        $user->setSerialNumber("def456");
 
         $expected = [
             'agb_code' => 'agb123',
@@ -37,6 +38,7 @@ class AuthenticatableUziUserTest extends TestCase
             'sur_name' => 'doe',
             'uzi_number' => '123',
             'uzi_version' => '1',
+            'serial_number' => 'def456',
         ];
 
         $authUser = AuthenticatableUziUser::fromUziUser($user);
