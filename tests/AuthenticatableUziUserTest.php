@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
  */
 class AuthenticatableUziUserTest extends TestCase
 {
-    public function testAuthenticableUser(): void
+    public function testAuthenticatableUser(): void
     {
         $user = new UziUser();
         $user->setAgbCode("agb123");
