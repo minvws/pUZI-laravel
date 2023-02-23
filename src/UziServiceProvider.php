@@ -32,7 +32,7 @@ class UziServiceProvider extends ServiceProvider
                 config("uzi.strict_ca_check", true),
                 config("uzi.allowed_types", []),
                 config("uzi.allowed_roles", []),
-                $this->getCACerts(config("uzi.ca_cert_path")),
+                $this->getCACerts(config("uzi.ca_certs_path")),
             );
         });
     }
