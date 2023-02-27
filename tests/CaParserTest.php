@@ -3,23 +3,20 @@
 namespace MinVWS\PUZI\Laravel\Tests;
 
 use Illuminate\Support\Facades\App;
+use MinVWS\PUZI\Laravel\CaParser;
 use MinVWS\PUZI\Laravel\UziServiceProvider;
 
 class UziServiceProviderTest extends TestCase
 {
     public function testCACertsEmpty(): void
     {
-        $serviceProvider = new UziServiceProvider(app());
-
-        $this->assertEmpty($serviceProvider->getCACerts(null));
-        $this->assertEmpty($serviceProvider->getCACerts(''));
+        $this->assertEmpty(CaParser::getCertsFromFile(null));
+        $this->assertEmpty(CaParser::getCertsFromFile(''));
     }
 
     public function testCACerts(): void
     {
-        $serviceProvider = new UziServiceProvider(app());
-
-        $caCerts = $serviceProvider->getCACerts(__DIR__ . '/Resources/test-fake-ca-file.pem');
+        $caCerts = CaParser::getCertsFromFile(__DIR__ . '/Resources/test-fake-ca-file.pem');
 
         $this->assertCount(2, $caCerts);
         $this->assertSame([
