@@ -36,6 +36,4 @@ class UziServiceProvider extends ServiceProvider
             );
         });
     }
-
-
 }
