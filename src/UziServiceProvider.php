@@ -24,6 +24,7 @@ class UziServiceProvider extends ServiceProvider
         ]);
     }
 
+    #[\Override]
     public function register(): void
     {
         $this->app->bind(UziValidator::class, function () {
