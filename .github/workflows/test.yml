@@ -22,11 +22,20 @@ jobs:
             testbench: 11.*
           - laravel: 12.*
             testbench: 10.*
+          # Lowest allowed dependencies on the lowest PHP per Laravel version
+          - php: '8.2'
+            laravel: 12.*
+            testbench: 10.*
+            dependency-version: prefer-lowest
+          - php: '8.3'
+            laravel: 13.*
+            testbench: 11.*
+            dependency-version: prefer-lowest
         exclude:
           - laravel: 13.*
             php: '8.2'
 
-    name: PHP ${{ matrix.php }} - L${{ matrix.laravel }}
+    name: PHP ${{ matrix.php }} - L${{ matrix.laravel }}${{ matrix.dependency-version == 'prefer-lowest' && ' (lowest)' || '' }}
     steps:
     - uses: actions/checkout@v4
     - name: Install PHP
