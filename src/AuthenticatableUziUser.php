@@ -36,6 +36,7 @@ class AuthenticatableUziUser extends BaseUziUser implements Authenticatable
     /**
      * @return string
      */
+    #[\Override]
     public function getAuthIdentifierName()
     {
         return "uzi_number";
@@ -44,14 +45,27 @@ class AuthenticatableUziUser extends BaseUziUser implements Authenticatable
     /**
      * @return mixed|string
      */
+    #[\Override]
     public function getAuthIdentifier()
     {
         return $this->getUziNumber();
     }
 
     /**
+     * UZI users authenticate with a client certificate and have no password.
+     *
      * @return string
      */
+    #[\Override]
+    public function getAuthPasswordName()
+    {
+        return "password";
+    }
+
+    /**
+     * @return string
+     */
+    #[\Override]
     public function getAuthPassword()
     {
         return "";
@@ -60,14 +74,16 @@ class AuthenticatableUziUser extends BaseUziUser implements Authenticatable
     /**
      * @return string
      */
+    #[\Override]
     public function getRememberToken()
     {
         return "";
     }
 
     /**
-     * @param string $value
+     * @param string|null $value
      */
+    #[\Override]
     public function setRememberToken($value)
     {
     }
@@ -75,6 +91,7 @@ class AuthenticatableUziUser extends BaseUziUser implements Authenticatable
     /**
      * @return string
      */
+    #[\Override]
     public function getRememberTokenName()
     {
         return "";

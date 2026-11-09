@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\App;
 use MinVWS\PUZI\Laravel\CaParser;
 use MinVWS\PUZI\Laravel\UziServiceProvider;
 
-class UziServiceProviderTest extends TestCase
+class CaParserTest extends TestCase
 {
     public function testCACertsEmpty(): void
     {

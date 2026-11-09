@@ -14,4 +14,11 @@
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
+    <issueHandlers>
+        <UndefinedInterfaceMethod>
+            <errorLevel type="suppress">
+                <referencedMethod name="Illuminate\Contracts\Auth\Guard::login" />
+            </errorLevel>
+        </UndefinedInterfaceMethod>
+    </issueHandlers>
 </psalm>

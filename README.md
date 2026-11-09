@@ -20,8 +20,8 @@ Questions and contributions are welcome via [GitHub](https://github.com/minvws/p
 
 ## Requirements
 
-* PHP 8
-* Laravel 8 or later.
+* PHP 8.2 or later.
+* Laravel 12 or 13.
 
 Apache config (or NginX equivalent):
 ```apacheconf
@@ -50,7 +50,7 @@ Add the following to your `composer.json` and then run `composer install`.
 ```json
 {
     "require": {
-        "minvws/puzi-laravel": "^v3.0"
+        "minvws/puzi-laravel": "^v4.0"
     }
 }
 ```
